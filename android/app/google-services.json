@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853381333204",
+    "project_id": "plantai-aef30",
+    "storage_bucket": "plantai-aef30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853381333204:android:271406a7ac4fd28ce0fb41",
+        "android_client_info": {
+          "package_name": "com.company.plantai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Hc6WYtvmzleFt7wEEoXY5KYBRl3_cPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
