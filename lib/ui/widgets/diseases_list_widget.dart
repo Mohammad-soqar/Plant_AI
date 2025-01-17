@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plantai/ui/views/disease_details_view.dart';
-import 'package:plantai/ui/views/plant_view.dart';
 
 class DiseasesList extends StatelessWidget {
   final List<Map<String, dynamic>> diseases;
 
-  const DiseasesList({required this.diseases});
+  const DiseasesList({super.key, required this.diseases});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class DiseasesList extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           subtitle: Text(maxLines: 2,
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
             disease['description']),
           trailing: const Icon(Icons.arrow_forward),
           onTap: () {
