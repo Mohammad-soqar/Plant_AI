@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DiseaseDetailsView extends StatelessWidget {
   final Map<String, dynamic> disease;
 
-  const DiseaseDetailsView({required this.disease});
+  const DiseaseDetailsView({super.key, required this.disease});
 
   @override
   Widget build(BuildContext context) {
