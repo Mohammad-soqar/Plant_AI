@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SimilarImagesGrid extends StatelessWidget {
   final List<String> similarImages;
 
-  const SimilarImagesGrid({required this.similarImages});
+  const SimilarImagesGrid({super.key, required this.similarImages});
 
   @override
   Widget build(BuildContext context) {
