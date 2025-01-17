@@ -8,7 +8,7 @@ import 'package:plantai/viewmodels/plant_view_model.dart';
 class HealthAssessmentSection extends StatelessWidget {
   final PlantViewModel viewModel;
 
-  const HealthAssessmentSection({required this.viewModel});
+  const HealthAssessmentSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
