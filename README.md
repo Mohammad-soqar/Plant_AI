@@ -14,7 +14,7 @@ Plant AI App is a mobile application designed to identify plants and provide car
 ## Technology Stack
 
 - **Frontend**: Flutter (for cross-platform mobile development)
-- **Backend**: Firebase (with optional Node.js integration)
+- **Backend**: Firebase & Node.js
 - **API**: Plant.id API v3 by Kindwise
 
 ## Getting Started
@@ -39,7 +39,7 @@ Plant AI App is a mobile application designed to identify plants and provide car
 
 3. Configure the environment:
    - Navigate to the `utils` folder.
-   - Update the `Env` class in `env.dart` with your specific API keys and configuration:
+   - Create the `env.dart` and create the `Env` class in with your specific API keys and configuration:
      ```dart
      class Env {
        static const String apiBaseUrl = 'https://api.example.com';
@@ -60,7 +60,7 @@ This app leverages the Plant.id API for its core functionalities. The API provid
 
 To use these services:
 - Ensure the API key is included in all requests using the `Api-Key` header.
-- Refer to the [Plant.id API Documentation](https://web.plant.id/documentation) for details on request parameters and response structures.
+- Refer to the [Plant.id API Documentation](https://documenter.getpostman.com/view/24599534/2s93z5A4v2) for details on request parameters and response structures.
 
 ## Contributing
 
