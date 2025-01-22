@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:plantai/ui/views/add_edit_plant_view.dart';
 import 'package:plantai/ui/views/plant_list_view.dart';
 import 'package:plantai/ui/widgets/health_assessment_widget.dart';
 import 'package:provider/provider.dart';
@@ -83,6 +84,16 @@ class PlantView extends StatelessWidget {
               );
               },
               child: const Text("Go to My Plants"),
+            ),
+              const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AddEditPlantView()),
+              );
+              },
+              child: const Text("Add Plant"),
             ),
           ],
         ),
