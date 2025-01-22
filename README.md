@@ -15,7 +15,7 @@ Plant AI App is a mobile application designed to identify plants and provide car
 
 - **Frontend**: Flutter (for cross-platform mobile development)
 - **Backend**: Firebase & Node.js
-- **API**: Plant.id API v3 by Kindwise
+- **API**: [Plant.id API v3 by Kindwise](https://www.kindwise.com/plant-id)
 
 ## Getting Started
 
