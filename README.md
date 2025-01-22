@@ -37,18 +37,21 @@ Plant AI App is a mobile application designed to identify plants and provide car
    flutter pub get
    ```
 
-3. Set up environment variables:
-   - Create a `.env` file in the project root directory.
-   - Add your Plant.id API key:
-     ```
-     PLANT_ID_API_KEY=your_api_key_here
+3. Configure the environment:
+   - Navigate to the `utils` folder.
+   - Update the `Env` class in `env.dart` with your specific API keys and configuration:
+     ```dart
+     class Env {
+       static const String apiBaseUrl = 'https://api.example.com';
+       static const String plantIdApiKey = 'your_plant_id_api_key';
+       static const String firebaseProjectId = 'your_firebase_project_id';
+     }
      ```
 
 4. Run the app:
    ```bash
    flutter run
    ```
-
 ### API Integration
 
 This app leverages the Plant.id API for its core functionalities. The API provides two key services:
