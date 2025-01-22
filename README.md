@@ -28,7 +28,7 @@ Plant AI App is a mobile application designed to identify plants and provide car
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/plant-ai-app.git
+   git clone https://github.com/Mohammad-soqar/Plant_AI.git
    cd plant-ai-app
    ```
 
@@ -84,7 +84,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For inquiries or support, please contact [your_email@example.com].
+For inquiries or support, please contact [mnsoqar1@gmail.com].
 
 ---
 
