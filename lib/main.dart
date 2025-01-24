@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plantai/data/repositories/plant_repository.dart';
+import 'package:plantai/ui/views/home_page.dart';
 import 'package:plantai/ui/views/plant_list_view.dart';
 import 'package:plantai/viewmodels/add_edit_plant_viewmodel.dart';
 import 'package:plantai/viewmodels/plant_list_viewmodel.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PlantView(),
+      home: HomePage(),
     );
   }
 }
