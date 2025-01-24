@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^5.4.0
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.17
   http: ^1.2.1
   image_picker: ^1.1.2
   provider: ^6.1.2
@@ -45,6 +46,8 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/icons/scan.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
