@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,7 +12,8 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: const CircleAvatar(
-          backgroundImage: NetworkImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
+          backgroundImage: NetworkImage(
+              'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
         ),
         title: const Text(
           'Hi, Mark\nGood Morning',
@@ -43,7 +45,9 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text('My Plants', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text('My Plants',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('View all', style: TextStyle(color: Colors.green)),
               ],
             ),
@@ -54,19 +58,29 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  PlantCard(plantName: 'Snake Plant', humidity: '125%', sunlight: 'Sunny', temperature: '90°F'),
-                  PlantCard(plantName: 'ZZ Plant', humidity: '125%', sunlight: 'Sunny', temperature: '92°F'),
+                  PlantCard(
+                      plantName: 'Snake Plant',
+                      humidity: '125%',
+                      sunlight: 'Sunny',
+                      temperature: '90°F'),
+                  PlantCard(
+                      plantName: 'ZZ Plant',
+                      humidity: '125%',
+                      sunlight: 'Sunny',
+                      temperature: '92°F'),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             // Related Plants Section
-            const Text('Related Plants', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text('Related Plants',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             // Related Plants Cards
             ListTile(
               leading: const Image(
-                image: NetworkImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
+                image: NetworkImage(
+                    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
                 height: 60,
                 width: 60,
                 fit: BoxFit.cover,
@@ -79,16 +93,33 @@ class HomePage extends StatelessWidget {
                   Text('Sunny • 90°F', style: TextStyle(color: Colors.grey)),
                 ],
               ),
-              trailing: const Text('\$25.55', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+              trailing: const Text('\$25.55',
+                  style: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold)),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.green,
-        child: const Icon(Icons.camera_alt),
+     floatingActionButton: SizedBox(
+        height: 180.0, // Set the height of the button
+        width: 180.0,  // Set the width of the button
+        child: FloatingActionButton(
+          onPressed: () {
+            // Handle your FAB action here
+          },
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40), // Adjust the radius to match the button size
+          ),
+          child: SvgPicture.asset(
+            'assets/icons/scan.svg', // Path to your SVG file
+            height: 40.0, // Increase the size of the icon
+            width: 40.0,
+            color: Colors.white, // Optional: Tint the SVG icon
+          ),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
@@ -126,11 +157,11 @@ class PlantCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        
           const SizedBox(height: 10),
           Text(plantName, style: const TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 5),
-          Text('$humidity • $sunlight • $temperature', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+          Text('$humidity • $sunlight • $temperature',
+              style: const TextStyle(fontSize: 12, color: Colors.grey)),
         ],
       ),
     );
