@@ -7,44 +7,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: const CircleAvatar(
-          backgroundImage: NetworkImage(
-              'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
-        ),
-        title: const Text(
-          'Hi, Mark\nGood Morning',
-          style: TextStyle(color: Colors.black, fontSize: 16),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black),
-            onPressed: () {},
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
+            ),
+            title: const Text(
+              'Hi, Mark\nGood Morning',
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.notifications_none, color: Colors.black),
+                onPressed: () {},
+              ),
+            ],
           ),
-        ],
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Toggle Buttons
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ChoiceChip(label: const Text('Indoor'), selected: true),
-                ChoiceChip(label: const Text('Outdoor'), selected: false),
-                ChoiceChip(label: const Text('Both'), selected: false),
-              ],
-            ),
-            const SizedBox(height: 20),
-            // My Plants Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
                 Text('My Plants',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -57,7 +52,7 @@ class HomePage extends StatelessWidget {
               height: 120,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
+                children: const [
                   PlantCard(
                       plantName: 'Snake Plant',
                       humidity: '125%',
@@ -77,45 +72,43 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             // Related Plants Cards
-            ListTile(
-              leading: const Image(
-                image: NetworkImage(
-                    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
-                height: 60,
-                width: 60,
-                fit: BoxFit.cover,
-              ),
-              title: const Text('Alberiya Garden Plant'),
+            const ListTile(
+             
+              title: Text('Alberiya Garden Plant'),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text('Plants are predominantly'),
                   Text('Sunny • 90°F', style: TextStyle(color: Colors.grey)),
                 ],
               ),
-              trailing: const Text('\$25.55',
+              trailing: Text('\$25.55',
                   style: TextStyle(
                       color: Colors.green, fontWeight: FontWeight.bold)),
             ),
           ],
         ),
       ),
-     floatingActionButton: SizedBox(
-        height: 180.0, // Set the height of the button
-        width: 180.0,  // Set the width of the button
-        child: FloatingActionButton(
-          onPressed: () {
-            // Handle your FAB action here
-          },
-          backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40), // Adjust the radius to match the button size
-          ),
-          child: SvgPicture.asset(
-            'assets/icons/scan.svg', // Path to your SVG file
-            height: 40.0, // Increase the size of the icon
-            width: 40.0,
-            color: Colors.white, // Optional: Tint the SVG icon
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0), // Add space below the FAB
+        child: SizedBox(
+          height: 80.0, // Set the height of the button
+          width: 80.0, // Set the width of the button
+          child: FloatingActionButton(
+            onPressed: () {
+              // Handle your FAB action here
+            },
+            backgroundColor: Colors.green,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  40), // Adjust the radius to match the button size
+            ),
+            child: SvgPicture.asset(
+              'assets/icons/scan.svg', // Path to your SVG file
+              height: 40.0, // Increase the size of the icon
+              width: 40.0,
+              color: Colors.white, // Optional: Tint the SVG icon
+            ),
           ),
         ),
       ),
@@ -144,15 +137,9 @@ class PlantCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16.0),
       width: 150,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.green,
         borderRadius: BorderRadius.circular(16.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-          ),
-        ],
+       
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
