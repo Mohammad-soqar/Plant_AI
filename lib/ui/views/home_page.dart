@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 Text('My Plants',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text('View all', style: TextStyle(color: Colors.green)),
+                Text('View all', style: TextStyle(color: Colors.white)),
               ],
             ),
             const SizedBox(height: 10),
@@ -82,32 +82,30 @@ class HomePage extends StatelessWidget {
                   Text('Sunny • 90°F', style: TextStyle(color: Colors.grey)),
                 ],
               ),
-              trailing: Text('\$25.55',
-                  style: TextStyle(
-                      color: Colors.green, fontWeight: FontWeight.bold)),
+              
             ),
           ],
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0), // Add space below the FAB
+        padding: const EdgeInsets.only(bottom: 16.0), 
         child: SizedBox(
-          height: 80.0, // Set the height of the button
-          width: 80.0, // Set the width of the button
+          height: 80.0, 
+          width: 80.0, 
           child: FloatingActionButton(
             onPressed: () {
-              // Handle your FAB action here
+             
             },
             backgroundColor: Colors.green,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
-                  40), // Adjust the radius to match the button size
+                  40), 
             ),
             child: SvgPicture.asset(
-              'assets/icons/scan.svg', // Path to your SVG file
-              height: 40.0, // Increase the size of the icon
+              'assets/icons/scan.svg', 
+              height: 40.0, 
               width: 40.0,
-              color: Colors.white, // Optional: Tint the SVG icon
+              color: Colors.white, 
             ),
           ),
         ),
