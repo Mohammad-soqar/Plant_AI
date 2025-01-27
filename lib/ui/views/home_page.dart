@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                   'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F606156431091159176%2F&psig=AOvVaw0W5wrCyRzNzv745_fqAMp5&ust=1737827702209000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJigw-r2josDFQAAAAAdAAAAABAI'),
             ),
             title: const Text(
-              'Hi, Mark\nGood Morning',
+              'Hi, Mark',
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             actions: [
