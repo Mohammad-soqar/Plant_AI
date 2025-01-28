@@ -4,7 +4,8 @@ import 'package:plantai/utils/env.dart';
 
 class PlantApiServices {
   final String identifyUrl = "https://api.plant.id/v2/identify";
-  final String healthAssessmentUrl = "https://api.plant.id/v2/health_assessment";
+  final String healthAssessmentUrl =
+      "https://api.plant.id/v2/health_assessment";
   final String apiKey = Env.plantIdApiKey;
 
   // Method to identify plant and get plant name
@@ -15,8 +16,9 @@ class PlantApiServices {
     final payload = {
       "api_key": apiKey,
       "images": base64Images,
+      "plant_details": ["common_names","taxonomy","edible_parts","watering", "url", "wiki_description"],
       "language": language,
-      "modifiers": ["similar_images"], // Enable similar images in the response
+      "modifiers": ["similar_images"],
     };
 
     try {
@@ -28,7 +30,12 @@ class PlantApiServices {
         body: jsonEncode(payload),
       );
 
-      print("Identify Response Body: ${response.body}");
+      final responseBody = response.body;
+      final pattern =
+          RegExp('.{1,800}'); // Split the string into 800-character chunks
+      pattern
+          .allMatches(responseBody)
+          .forEach((match) => print(match.group(0)));
       if (response.statusCode == 200 || response.statusCode == 201) {
         final decodedBody = jsonDecode(response.body);
         print("Parsed Identify JSON: $decodedBody");
