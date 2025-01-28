@@ -39,7 +39,6 @@ class PlantListView extends StatelessWidget {
               final plant = viewModel.plants[index];
               return PlantCard(
                 plantName: plant.plantName,
-                description: plant.description,
                 imageUrl: plant.imageUrl,
                 onTap: () {
                   // Handle card tap (e.g., navigate to a details page)
