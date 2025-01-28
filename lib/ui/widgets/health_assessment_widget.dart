@@ -12,6 +12,10 @@ class HealthAssessmentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String limitedText = viewModel.plantDescription!.contains(".")
+        ? viewModel.plantDescription!.split(".")[0] + "."
+        : viewModel.plantDescription!;
+
     return Flexible(
       child: SingleChildScrollView(
         child: Column(
@@ -28,23 +32,56 @@ class HealthAssessmentSection extends StatelessWidget {
                 ),
               ),
             if (viewModel.plantName != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  "Plant Name: ${viewModel.plantName}",
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      "${viewModel.plantName}",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      limitedText,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(3, (index) {
+                      return Opacity(
+                        opacity: (index < viewModel.plantWateringstr!)
+                            ? 1.0
+                            : 0.3, // Full opacity for active emojis, low opacity for inactive
+                        child: const Text(
+                          '💧',
+                          style: TextStyle(
+                              fontSize: 16), // Adjust font size as needed
+                        ),
+                      );
+                    }),
+                  ),
+                ],
               ),
-            if (viewModel.healthStatus!.toLowerCase() == "diseased")
+            if (viewModel.healthStatus != null &&
+                viewModel.healthStatus!.toLowerCase() == "diseased")
               Text(
                 "Health Status: ${viewModel.healthStatus}",
                 style: const TextStyle(fontSize: 14),
               ),
             const SizedBox(height: 20),
-            DiseasesList(diseases: viewModel.diseases),
+            if (viewModel.healthStatus!.toLowerCase() == "diseased")
+              DiseasesList(diseases: viewModel.diseases),
             const SizedBox(height: 20),
             SimilarImagesGrid(similarImages: viewModel.similarImages),
           ],
