@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 class PlantCard extends StatelessWidget {
   final String plantName;
-  final String description;
   final String imageUrl;
   final VoidCallback onTap;
 
   const PlantCard({
     super.key,
     required this.plantName,
-    required this.description,
     required this.imageUrl,
     required this.onTap,
   });
@@ -53,16 +51,7 @@ class PlantCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      description,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  
                   ],
                 ),
               ),
@@ -70,6 +59,6 @@ class PlantCard extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ); 
   }
 }
