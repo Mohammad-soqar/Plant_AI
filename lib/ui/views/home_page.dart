@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:plantai/ui/views/plant_view.dart';
+import 'package:plantai/viewmodels/plant_view_model.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<PlantViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -73,7 +80,6 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 10),
             // Related Plants Cards
             const ListTile(
-             
               title: Text('Alberiya Garden Plant'),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,30 +88,66 @@ class HomePage extends StatelessWidget {
                   Text('Sunny • 90°F', style: TextStyle(color: Colors.grey)),
                 ],
               ),
-              
             ),
           ],
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0), 
+        padding: const EdgeInsets.only(bottom: 16.0),
         child: SizedBox(
-          height: 80.0, 
-          width: 80.0, 
+          height: 80.0,
+          width: 80.0,
           child: FloatingActionButton(
-            onPressed: () {
-             
+            onPressed: () async {
+              final picker = ImagePicker();
+
+              // Show a dialog to choose between gallery and camera
+              final result = await showModalBottomSheet<String>(
+                context: context,
+                builder: (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.photo_library),
+                      title: const Text('Pick from Gallery'),
+                      onTap: () => Navigator.pop(context, 'gallery'),
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.camera_alt),
+                      title: const Text('Take a Picture'),
+                      onTap: () => Navigator.pop(context, 'camera'),
+                    ),
+                  ],
+                ),
+              );
+
+              // Handle the result from the dialog
+              if (result != null) {
+                XFile? image;
+                if (result == 'gallery') {
+                  image = await picker.pickImage(source: ImageSource.gallery);
+                } else if (result == 'camera') {
+                  image = await picker.pickImage(source: ImageSource.camera);
+                }
+
+                if (image != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PlantView(plantPicture: image!,)),
+                  );
+                  
+                }
+              }
             },
             backgroundColor: Colors.green,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  40), 
+              borderRadius: BorderRadius.circular(40),
             ),
             child: SvgPicture.asset(
-              'assets/icons/scan.svg', 
-              height: 40.0, 
+              'assets/icons/scan.svg',
+              height: 40.0,
               width: 40.0,
-              color: Colors.white, 
+              color: Colors.white,
             ),
           ),
         ),
@@ -137,7 +179,6 @@ class PlantCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.circular(16.0),
-       
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
