@@ -7,6 +7,8 @@ class PlantViewModel extends ChangeNotifier {
   final PlantApiServices _plantApiServices = PlantApiServices();
 
   String? plantName; // To store the plant name
+  String? plantDescription; // To store the plant name
+  int? plantWateringstr; // To store the plant name
   String? healthStatus; // To store plant health status
   String? pickedImagePath;
   List<Map<String, dynamic>> diseases = [];
@@ -32,8 +34,17 @@ class PlantViewModel extends ChangeNotifier {
       );
 
       if (identifyResponse['is_plant'] == true) {
-        plantName = identifyResponse['suggestions']?[0]?['plant_name'] ?? "Unknown Plant";
-        similarImages = identifyResponse['suggestions']?[0]?['similar_images'] != null
+        plantName = identifyResponse['suggestions']?[0]?['plant_name'] ??
+            "Unknown Plant";
+        plantDescription = identifyResponse['suggestions']?[0]?['plant_details']
+                ?["wiki_description"]?["value"] ??
+            "Unknown Plant";
+        plantWateringstr = identifyResponse['suggestions']?[0]?['plant_details']
+                ?["watering"]?["min"] ??
+            0;
+        similarImages = identifyResponse['suggestions']?[0]
+                    ?['similar_images'] !=
+                null
             ? (identifyResponse['suggestions']?[0]?['similar_images'] as List)
                 .map((image) => image['url'] as String)
                 .toList()
@@ -50,7 +61,8 @@ class PlantViewModel extends ChangeNotifier {
 
       final healthAssessment = healthResponse['health_assessment'];
       if (healthAssessment != null) {
-        healthStatus = healthAssessment['is_healthy'] == true ? "Healthy" : "Diseased";
+        healthStatus =
+            healthAssessment['is_healthy'] == true ? "Healthy" : "Diseased";
 
         // Extract diseases
         final diseaseSuggestions = healthAssessment['diseases'] as List?;
