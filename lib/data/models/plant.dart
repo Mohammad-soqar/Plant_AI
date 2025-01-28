@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Plant {
   final String plantId; // Unique plant ID
-  final String plantName; // Name of the plant
-  final String imageUrl; // URL for plant image
-  final String description; // Brief description of the plant
-  final String plantType; // Indoor, outdoor, etc.
+  final String plantName; // Name of the plant //
+  final String imageUrl; // URL for plant image //
   final String wateringFrequency; // e.g., "7 days"
   final String wateringAmount; // e.g., "200 mL"
   final DateTime lastWateredDate; // Last time the plant was watered
@@ -22,8 +20,6 @@ class Plant {
     required this.plantId,
     required this.plantName,
     this.imageUrl = '',
-    this.description = '',
-    required this.plantType,
     required this.wateringFrequency,
     required this.wateringAmount,
     required this.lastWateredDate,
@@ -53,8 +49,6 @@ class Plant {
       plantId: snap.id,
       plantName: snapshot['plantName'],
       imageUrl: snapshot['imageUrl'] ?? '',
-      description: snapshot['description'] ?? '',
-      plantType: snapshot['plantType'] ?? 'Unknown',
       wateringFrequency: snapshot['wateringFrequency'] ?? '',
       wateringAmount: snapshot['wateringAmount'] ?? '',
       lastWateredDate: parseDate(snapshot['lastWateredDate']) ?? DateTime.now(),
@@ -77,8 +71,6 @@ class Plant {
     return {
       'plantName': plantName,
       'imageUrl': imageUrl,
-      'description': description,
-      'plantType': plantType,
       'wateringFrequency': wateringFrequency,
       'wateringAmount': wateringAmount,
       'lastWateredDate': Timestamp.fromDate(lastWateredDate),
