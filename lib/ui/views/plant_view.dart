@@ -1,14 +1,34 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:plantai/ui/views/add_edit_plant_view.dart';
-import 'package:plantai/ui/views/plant_list_view.dart';
 import 'package:plantai/ui/widgets/health_assessment_widget.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/plant_view_model.dart';
 
-class PlantView extends StatelessWidget {
-  const PlantView({super.key});
+class PlantView extends StatefulWidget {
+  final XFile plantPicture;
+
+  const PlantView({super.key, required this.plantPicture});
+
+  @override
+  State<PlantView> createState() => _PlantViewState();
+}
+
+class _PlantViewState extends State<PlantView> {
+  late PlantViewModel viewModel;
+
+ @override
+void initState() {
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    viewModel = Provider.of<PlantViewModel>(context, listen: false);
+
+    // Convert XFile to File
+    final File plantFile = File(widget.plantPicture.path);
+    viewModel.analyzePlant(plantFile);
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,68 +53,6 @@ class PlantView extends StatelessWidget {
             else
               const Text("No health assessment yet."),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final picker = ImagePicker();
-
-                // Show a dialog to choose between gallery and camera
-                final result = await showModalBottomSheet<String>(
-                  context: context,
-                  builder: (context) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.photo_library),
-                        title: const Text('Pick from Gallery'),
-                        onTap: () => Navigator.pop(context, 'gallery'),
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.camera_alt),
-                        title: const Text('Take a Picture'),
-                        onTap: () => Navigator.pop(context, 'camera'),
-                      ),
-                    ],
-                  ),
-                );
-
-                // Handle the result from the dialog
-                if (result != null) {
-                  XFile? image;
-                  if (result == 'gallery') {
-                    image = await picker.pickImage(source: ImageSource.gallery);
-                  } else if (result == 'camera') {
-                    image = await picker.pickImage(source: ImageSource.camera);
-                  }
-
-                  if (image != null) {
-                    // Analyze the selected image
-                    viewModel.analyzePlant(File(image.path));
-                  }
-                }
-              },
-              child: const Text("Assess Health"),
-            ),
-
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PlantListView()),
-              );
-              },
-              child: const Text("Go to My Plants"),
-            ),
-              const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AddEditPlantView()),
-              );
-              },
-              child: const Text("Add Plant"),
-            ),
           ],
         ),
       ),
