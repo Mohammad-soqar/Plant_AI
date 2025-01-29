@@ -42,7 +42,7 @@ class PlantViewModel extends ChangeNotifier {
         plantWateringstr = identifyResponse['suggestions']?[0]?['plant_details']
                 ?["watering"]?["min"] ??
             0;
-        similarImages = identifyResponse['suggestions']?[0]
+        similarImages = identifyResponse['suggestions']?[0] 
                     ?['similar_images'] !=
                 null
             ? (identifyResponse['suggestions']?[0]?['similar_images'] as List)
