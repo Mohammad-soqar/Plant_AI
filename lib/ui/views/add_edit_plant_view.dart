@@ -39,9 +39,9 @@ class _AddEditPlantViewState extends State<AddEditPlantView> {
         wateringAmount: _wateringAmountController.text.trim(),
         lastWateredDate: _lastWateredDate ?? DateTime.now(),
         nextWateringDate: _nextWateringDate ?? DateTime.now(),
-        wateringStatus: 'On Schedule', // Default value
-        growthStage: 'Seedling', // Default value
-        waterReminderEnabled: true, // Default value
+        wateringStatus: 'On Schedule', 
+        growthStage: 'Seedling', 
+        waterReminderEnabled: true, 
       );
 
       await viewModel.addPlant(plant);
