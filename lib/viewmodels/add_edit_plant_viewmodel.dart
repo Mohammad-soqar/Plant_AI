@@ -39,7 +39,6 @@ class AddEditPlantViewModel extends ChangeNotifier {
     }
   }
 
-  // Helper methods for state and error management
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
