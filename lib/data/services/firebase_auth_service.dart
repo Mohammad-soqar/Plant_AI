@@ -9,7 +9,6 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Register a new user
   Future<void> registerUser(
       String fullName,
       String phoneNumber,
@@ -18,7 +17,6 @@ class AuthMethods {
       
       String role) async {
     try {
-      // Create user in Firebase Authentication
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: email,
