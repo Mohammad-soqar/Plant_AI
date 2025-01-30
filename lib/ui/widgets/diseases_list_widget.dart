@@ -14,6 +14,8 @@ class DiseasesList extends StatelessWidget {
       );
     }
 
+
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: diseases.map((disease) {

@@ -8,6 +8,8 @@ class AddEditPlantView extends StatefulWidget {
 
   @override
   _AddEditPlantViewState createState() => _AddEditPlantViewState();
+
+
 }
 
 class _AddEditPlantViewState extends State<AddEditPlantView> {
