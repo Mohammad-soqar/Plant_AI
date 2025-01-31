@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantai/ui/widgets/plant_card_widget.dart';
+import 'package:plantai/ui/widgets/plant_list_card_widget.dart';
 import 'package:plantai/viewmodels/plant_list_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +37,7 @@ class PlantListView extends StatelessWidget {
             itemCount: viewModel.plants.length,
             itemBuilder: (context, index) {
               final plant = viewModel.plants[index];
-              return PlantCard(
+              return PlantListCard(
                 plantName: plant.plantName,
                 imageUrl: plant.imageUrl,
                 onTap: () {
