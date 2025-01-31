@@ -10,9 +10,7 @@ class PlantListViewmodel extends ChangeNotifier {
   Future<List<Plant>>? _cachedPlantsFuture; // Cache the Future
 
   Future<List<Plant>> getPlants() async {
-    if (_cachedPlantsFuture == null) {
-      _cachedPlantsFuture = _fetchPlants();
-    }
+    _cachedPlantsFuture ??= _fetchPlants();
     return _cachedPlantsFuture!;
   }
 
