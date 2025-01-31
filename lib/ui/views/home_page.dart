@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:plantai/ui/views/plant_view.dart';
 import 'package:plantai/ui/widgets/plant_card_widget.dart';
+import 'package:plantai/viewmodels/plant_list_viewmodel.dart';
 import 'package:plantai/viewmodels/plant_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +12,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<PlantViewModel>(context);
+    final plantVM = Provider.of<PlantViewModel>(context);
+    final plantListVM = Provider.of<PlantListViewmodel>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -40,12 +40,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('My Plants',
@@ -54,50 +54,101 @@ class HomePage extends StatelessWidget {
                 Text('View all', style: TextStyle(color: Colors.white)),
               ],
             ),
-            SizedBox(height: 10),
-            // My Plants Cards
-            SingleChildScrollView(
+            const SizedBox(height: 10),
+            FutureBuilder(
+              future: plantListVM.getPlants(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError ||
+                    plantListVM.errorMessage != null) {
+                  return Center(
+                    child: Text(
+                      plantListVM.errorMessage ?? "Something went wrong",
+                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  );
+                } else if (plantListVM.plants.isEmpty) {
+                  return const Center(
+                    child: Text("No plants available."),
+                  );
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.all(12.0),
+                  itemCount: plantListVM.plants.length,
+                  itemBuilder: (context, index) {
+                    final plant = plantListVM.plants[index];
+                    return PlantCard(
+                      plantName: plant.plantName,
+                      imageUrl: plant.imageUrl,
+                      onTap: () {
+                        // Handle card tap (e.g., navigate to a details page)
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(plant.plantName),
+                            content:
+                                Text("More details about ${plant.plantName}"),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text("Close"),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: plantListVM.plants.length,
+              itemBuilder: (context, index) {
+                final plant = plantListVM.plants[index];
+                return PlantCard(
+                  plantName: plant.plantName,
+                  imageUrl: plant.imageUrl,
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(plant.plantName),
+                        content: Text("More details about ${plant.plantName}"),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Close"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
+                  /*  PlantCard(
+                    plantName: 'Snake Plant',
+                  ),
                   PlantCard(
                     plantName: 'Snake Plant',
-                    humidity: '125%',
-                    sunlight: 'Sunny',
-                    temperature: '90°F',
-                  ),
-                   PlantCard(
-                    plantName: 'Snake Plant',
-                    humidity: '125%',
-                    sunlight: 'Sunny',
-                    temperature: '90°F',
                   ),
                   PlantCard(
                     plantName: 'ZZ Plant',
-                    humidity: '125%',
-                    sunlight: 'Sunny',
-                    temperature: '92°F',
-                  ),
+                  ), */
                 ],
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Related Plants Section
-            Text('Related Plants',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            // Related Plants Cards
-            ListTile(
-              title: Text('Alberiya Garden Plant'),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Plants are predominantly'),
-                  Text('Sunny • 90°F', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-            ),
           ],
         ),
       ),
