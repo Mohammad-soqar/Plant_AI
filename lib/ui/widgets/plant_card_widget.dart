@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 
 class PlantCard extends StatelessWidget {
   final String plantName;
-  final String humidity;
-  final String sunlight;
-  final String temperature;
+  final String imageUrl;
+  final VoidCallback onTap;
 
   const PlantCard({
     super.key,
     required this.plantName,
-    required this.humidity,
-    required this.sunlight,
-    required this.temperature,
+    required this.imageUrl,
+    required this.onTap,
   });
 
   @override
@@ -29,7 +27,7 @@ class PlantCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              'assets/plant.png',
+              imageUrl,
               width: double.infinity,
               height: 180, // Adjust height dynamically
               fit: BoxFit.cover,
