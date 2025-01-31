@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantai/ui/views/disease_details_view.dart';
+import 'package:plantai/ui/views/plant_management/disease_details_view.dart';
 
 class DiseasesList extends StatelessWidget {
   final List<Map<String, dynamic>> diseases;
