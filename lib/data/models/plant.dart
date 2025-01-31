@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:plantai/data/models/abstract/abstract.dart';
 
-class Plant {
+class Plant extends BaseModel {
   final String plantId; // Unique plant ID
   final String plantName; // Name of the plant //
   final String imageUrl; // URL for plant image //
@@ -16,7 +17,7 @@ class Plant {
   final List<Map<String, dynamic>> careHistory; // List of past care activities
   final bool favorite; // Whether the plant is marked as a favorite
 
-  const Plant({
+  Plant({
     required this.plantId,
     required this.plantName,
     this.imageUrl = '',

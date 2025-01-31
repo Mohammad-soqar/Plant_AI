@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:plantai/data/models/abstract/abstract.dart';
 
-class User {
+class User extends BaseModel {
   final String uid; // Unique user ID
   final String fullName; // User's full name
   final String email; // User's email
@@ -17,7 +18,7 @@ class User {
   // Search History
   final List<Map<String, dynamic>> searchHistory; // List of past searches
 
-  const User({
+   User({
     required this.uid,
     required this.fullName,
     required this.email,
