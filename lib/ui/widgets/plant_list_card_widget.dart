@@ -19,6 +19,8 @@ class PlantListCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
+
+      
       child: InkWell(
         onTap: onTap,
         child: Padding(
