@@ -5,6 +5,8 @@ class PlantCard extends StatelessWidget {
   final String imageUrl;
   final VoidCallback onTap;
 
+
+
   const PlantCard({
     super.key,
     required this.plantName,
@@ -20,6 +22,7 @@ class PlantCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
       ),
+
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
