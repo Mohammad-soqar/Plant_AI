@@ -20,6 +20,10 @@ class PlantListCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
 
+
+
+
+
       
       child: InkWell(
         onTap: onTap,
