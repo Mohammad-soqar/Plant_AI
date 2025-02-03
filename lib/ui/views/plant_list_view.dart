@@ -43,6 +43,9 @@ class PlantListView extends StatelessWidget {
 
 
                 
+
+
+                
                 onTap: () {
                   // Handle card tap (e.g., navigate to a details page)
                   showDialog(
