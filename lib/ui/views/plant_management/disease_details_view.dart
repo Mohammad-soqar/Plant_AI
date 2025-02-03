@@ -5,6 +5,10 @@ class DiseaseDetailsView extends StatelessWidget {
 
   const DiseaseDetailsView({super.key, required this.disease});
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
