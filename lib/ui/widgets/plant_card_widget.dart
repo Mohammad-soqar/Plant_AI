@@ -5,18 +5,12 @@ class PlantCard extends StatelessWidget {
   final String imageUrl;
   final VoidCallback onTap;
 
-
-
   const PlantCard({
     super.key,
     required this.plantName,
     required this.imageUrl,
     required this.onTap,
   });
-
-
-
-  
 
   @override
   Widget build(BuildContext context) {
