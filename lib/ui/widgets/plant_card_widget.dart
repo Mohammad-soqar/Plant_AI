@@ -12,6 +12,8 @@ class PlantCard extends StatelessWidget {
     required this.onTap,
   });
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
