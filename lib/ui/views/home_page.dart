@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                       plantName: plant.plantName,
                       imageUrl: plant.imageUrl,
                       onTap: () {
-                        // Handle card tap (e.g., navigate to a details page)
+                       
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
