@@ -12,6 +12,8 @@ class PlantListCard extends StatelessWidget {
     required this.onTap,
   });
 
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,7 +28,7 @@ class PlantListCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Plant image
+              
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
