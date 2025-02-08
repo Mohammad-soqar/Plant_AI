@@ -11,9 +11,7 @@ class PlantCard extends StatelessWidget {
     required this.imageUrl,
     required this.onTap,
   });
-
-
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +20,6 @@ class PlantCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
       ),
-
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -36,7 +33,6 @@ class PlantCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
           // 🌿 Gradient Overlay
           Positioned(
             bottom: 0,
