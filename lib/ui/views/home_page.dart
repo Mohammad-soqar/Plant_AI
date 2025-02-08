@@ -54,6 +54,7 @@ class HomePage extends StatelessWidget {
                 Text('View all', style: TextStyle(color: Colors.white)),
               ],
             ),
+            
             const SizedBox(height: 10),
             FutureBuilder(
               future: plantListVM.getPlants(),
