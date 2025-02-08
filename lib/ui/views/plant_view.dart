@@ -28,8 +28,6 @@ void initState() {
     viewModel.analyzePlant(plantFile);
   });
 }
-
-
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<PlantViewModel>(context);
