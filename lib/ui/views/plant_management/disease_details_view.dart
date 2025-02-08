@@ -4,9 +4,7 @@ class DiseaseDetailsView extends StatelessWidget {
   final Map<String, dynamic> disease;
 
   const DiseaseDetailsView({super.key, required this.disease});
-
-
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
