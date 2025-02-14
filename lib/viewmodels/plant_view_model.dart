@@ -18,7 +18,7 @@ class PlantViewModel extends ChangeNotifier {
 
   Future<void> analyzePlant(File imageFile) async {
     try {
-      // Convert image to Base64
+      // Convert image to Base64ة
       final bytes = imageFile.readAsBytesSync();
       final base64Image = base64Encode(bytes);
       pickedImagePath = imageFile.path;
@@ -84,7 +84,7 @@ class PlantViewModel extends ChangeNotifier {
           diseases = [];
         }
       } else {
-        healthStatus = "No health assessment found";
+        healthStatus ="No health assessment found";
         diseases = [];
       }
     } catch (e) {
@@ -94,4 +94,4 @@ class PlantViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-}
+}     
